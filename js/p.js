@@ -14,11 +14,13 @@ addLayer("p", {
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
+        mult = new Decimal(1);
+     if (hasUpgrade("p", 14))  mult = mult.times(2);
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+       exp = new Decimal(1);
+        return exp;
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
@@ -50,6 +52,14 @@ addLayer("p", {
         description: "x2.4 point gain",
         cost: new Decimal(5),
          unlocked() { return (hasUpgrade(this.layer, 12))},
+               
+        
+    },
+      14: {
+        title: "prestige - 04",
+        description: "double points and prestige points",
+        cost: new Decimal(15),
+         unlocked() { return (hasUpgrade(this.layer, 13))},
                
         
     },
