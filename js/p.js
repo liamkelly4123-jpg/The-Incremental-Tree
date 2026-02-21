@@ -16,6 +16,8 @@ addLayer("p", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1);
      if (hasUpgrade("p", 14))  mult = mult.times(2);
+          if (hasUpgrade("p", 15))  mult = mult.times(3);
+
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -60,6 +62,22 @@ addLayer("p", {
         description: "double points and prestige points",
         cost: new Decimal(15),
          unlocked() { return (hasUpgrade(this.layer, 13))},
+               
+        
+    },
+    15: {
+        title: "prestige - 05",
+        description: "triple prestige points",
+        cost: new Decimal(100),
+         unlocked() { return (hasUpgrade(this.layer, 14))},
+               
+        
+    },
+     21: {
+        title: "prestige - 06",
+        description: "x3.5 points",
+        cost: new Decimal(450),
+         unlocked() { return (hasUpgrade(this.layer, 15))},
                
         
     },
