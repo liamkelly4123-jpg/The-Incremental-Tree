@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Incremental Tree",
 	author: "liam",
 	pointsName: "points",
-	modFiles: ["tree.js", "p.js],
+	modFiles: ["tree.js", "p.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -12,7 +12,7 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.0",
+	num: "1",
 	name: "Literally nothing",
 }
 
@@ -42,6 +42,8 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade("p", 11)) gain = gain.times(2);
+	if (hasUpgrade("p", 12)) gain = gain.times(upgradeEffect("p", 12));
 	return gain
 }
 
