@@ -45,6 +45,14 @@ addLayer("p", {
                 effectDisplay() { return format(this.effect())+"x" }, // Add formatting to the effect
         
     },
+     13: {
+        title: "prestige - 03",
+        description: "x2.4 point gain",
+        cost: new Decimal(5),
+         unlocked() { return (hasUpgrade(this.layer, 12))},
+               
+        
+    },
     
 },
 
