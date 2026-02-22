@@ -92,6 +92,19 @@ addLayer("p", {
                
         
     },
+     23: {
+        title: "prestige - 08",
+        description: "prestige upgrades bought boosts points",
+        cost: new Decimal(5000),
+         unlocked() { return (hasUpgrade(this.layer, 22))},
+          effect() { // Calculate bonuses from the upgrade. Can return a single value or an object with multiple values
+                    let ret = player.p.upgrades.length /2.3;
+                    return ret;
+                },
+                effectDisplay() { return format(this.effect())+"x" }, // Add formatting to the effect
+               
+        
+    },
     
 },
 
