@@ -49,13 +49,13 @@ addLayer("p", {
     layerShown(){return true},
     upgrades: {
     11: {
-        title: "prestige - 01",
+        title: "you gotta start somewhere",
         description: "double point gain",
         cost: new Decimal(1),
         
     },
      12: {
-        title: "prestige - 02",
+        title: "synergized",
         description: "prestige points boost point gain",
         cost: new Decimal(2),
          unlocked() { return (hasUpgrade(this.layer, 11))},
@@ -69,7 +69,7 @@ addLayer("p", {
         
     },
      13: {
-        title: "prestige - 03",
+        title: "a bit better",
         description: "x2.4 point gain",
         cost: new Decimal(5),
          unlocked() { return (hasUpgrade(this.layer, 12))},
@@ -77,7 +77,7 @@ addLayer("p", {
         
     },
       14: {
-        title: "prestige - 04",
+        title: "double trouble",
         description: "double points and prestige points",
         cost: new Decimal(15),
          unlocked() { return (hasUpgrade(this.layer, 13))},
@@ -85,7 +85,7 @@ addLayer("p", {
         
     },
     15: {
-        title: "prestige - 05",
+        title: "finale row 1 upgrade",
         description: "triple prestige points",
         cost: new Decimal(100),
          unlocked() { return (hasUpgrade(this.layer, 14))},
@@ -93,7 +93,7 @@ addLayer("p", {
         
     },
      21: {
-        title: "prestige - 06",
+        title: "better boosts for row 2",
         description: "x3.5 points",
         cost: new Decimal(450),
          unlocked() { return (hasUpgrade(this.layer, 15))},
@@ -101,7 +101,7 @@ addLayer("p", {
         
     },
      22: {
-        title: "prestige - 07",
+        title: "more prestige",
         description: "x2.5 prestige points",
         cost: new Decimal(1300),
          unlocked() { return (hasUpgrade(this.layer, 21))},
@@ -109,7 +109,7 @@ addLayer("p", {
         
     },
      23: {
-        title: "prestige - 08",
+        title: "upgrade synergy",
         description: "prestige upgrades bought boosts points",
         cost: new Decimal(5000),
          unlocked() { return (hasUpgrade(this.layer, 22))},
@@ -122,7 +122,7 @@ addLayer("p", {
         
     },
      24: {
-        title: "prestige - 09",
+        title: "quadrupled!",
         description: "x4 points",
         cost: new Decimal(12000),
          unlocked() { return (hasUpgrade(this.layer, 23))},
@@ -131,7 +131,7 @@ addLayer("p", {
         
     },
       25: {
-        title: "prestige - 10",
+        title: "finale prestige upgrade",
         description: "unlock matter and x3.4 points",
         cost: new Decimal(35000),
          unlocked() { return (hasUpgrade(this.layer, 24))},

@@ -12,16 +12,26 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "2",
+	num: "2.1",
 	name: "protons and upgrades",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+<h3>v2.1</h3><br>
+		- Added upgrade names<br>
 
-let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
+	<h3>v2</h3><br>
+		- Added a lot of upgrades<br>
+		- Added protons<br>
+
+
+
+
+
+
+	<br><br><br><br><br>	- you found me!`
+
+let winText = `Message from the dev: thank's for playing and beating my game! I hope you enjoyed it. Please comment any suggestions you have for a future update!`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)

@@ -40,13 +40,13 @@ addLayer("pt", {
     layerShown(){return hasUpgrade("m", 35) || player.pt.unlocked},
     upgrades: {
     11: {
-        title: "proton - 01",
+        title: "even more boost",
         description: "x8 points",
         cost: new Decimal(1),
         
     },
        12: {
-        title: "proton - 02",
+        title: "oom increase",
         description: "x10 prestige points",
         cost: new Decimal(5),
         unlocked() { return (hasUpgrade(this.layer, 11))},
@@ -54,7 +54,7 @@ addLayer("pt", {
         
     },
       13: {
-        title: "proton - 03",
+        title: "that's a lot more points!",
         description: "x15 points",
         cost: new Decimal(20),
         unlocked() { return (hasUpgrade(this.layer, 12))},
