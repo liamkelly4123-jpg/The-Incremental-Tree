@@ -105,6 +105,15 @@ addLayer("p", {
                
         
     },
+     24: {
+        title: "prestige - 09",
+        description: "x4 points",
+        cost: new Decimal(12000),
+         unlocked() { return (hasUpgrade(this.layer, 23))},
+         
+               
+        
+    },
     
 },
 
