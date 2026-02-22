@@ -114,6 +114,15 @@ addLayer("p", {
                
         
     },
+      25: {
+        title: "prestige - 10",
+        description: "unlock matter and x3.4 points",
+        cost: new Decimal(35000),
+         unlocked() { return (hasUpgrade(this.layer, 24))},
+         
+               
+        
+    },
     
 },
 
