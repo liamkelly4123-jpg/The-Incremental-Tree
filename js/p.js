@@ -19,12 +19,27 @@ addLayer("p", {
      if (hasUpgrade("p", 15))  mult = mult.times(3);
      if (hasUpgrade("p", 22))  mult = mult.times(2.5);
 
+     if (hasUpgrade("m", 13))  mult = mult.times(3);
+     if (hasUpgrade("m", 21))  mult = mult.times(2.6);
+     if (hasUpgrade("m", 34))  mult = mult.times(4);
+
+          if (hasUpgrade("pt", 12))  mult = mult.times(10);
+
+
+
+
+
 
 
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
        exp = new Decimal(1);
+       if (hasUpgrade("m", 14)) exp = exp.add(0.1);
+       if (hasUpgrade("m", 24)) exp = exp.times(1.1);
+       if (hasUpgrade("m", 33)) exp = exp.times(1.1);
+
+
         return exp;
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
@@ -46,6 +61,7 @@ addLayer("p", {
          unlocked() { return (hasUpgrade(this.layer, 11))},
                 effect() { // Calculate bonuses from the upgrade. Can return a single value or an object with multiple values
                     let ret = player[this.layer].points.add(1).pow(0.45);
+                    if (hasUpgrade("m", 12)) ret = ret.pow(1.2);
                     if (ret.gte("1e20")) ret = ret.sqrt().times("1e10")
                     return ret;
                 },

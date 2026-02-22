@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Incremental Tree",
 	author: "liam",
 	pointsName: "points",
-	modFiles: ["tree.js", "p.js", "m.js"],
+	modFiles: ["tree.js", "p.js", "m.js", "pt.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -12,8 +12,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1",
-	name: "Literally nothing",
+	num: "2",
+	name: "protons and upgrades",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -52,6 +52,25 @@ function getPointGen() {
 	if (hasUpgrade("p", 25)) gain = gain.times(3.4);
 
 	if (hasUpgrade("m", 11)) gain = gain.times(4);
+	if (hasUpgrade("m", 13)) gain = gain.times(1.5);
+	if (hasUpgrade("m", 15)) gain = gain.times(4);
+	if (hasUpgrade("m", 23) && hasUpgrade("p", 23)) gain = gain.times(upgradeEffect("p", 23));
+	if (hasUpgrade("m", 25)) gain = gain.times(5);
+	if (hasUpgrade("m", 35)) gain = gain.times(4);
+
+	if (hasUpgrade("pt", 11)) gain = gain.times(8);
+	if (hasUpgrade("pt", 13)) gain = gain.times(15);
+
+
+
+
+
+
+	if (hasUpgrade("m", 22)) gain = gain.pow(1.1);
+	if (hasUpgrade("m", 32)) gain = gain.pow(1.08);
+
+
+
 
 
 	return gain
@@ -63,11 +82,14 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
+		function() {if (true) return "reach 1e25 points to reach the endgame!"},
+
+
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("1e25"))
 }
 
 
