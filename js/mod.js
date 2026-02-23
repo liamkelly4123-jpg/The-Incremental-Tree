@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Incremental Tree",
 	author: "liam",
 	pointsName: "points",
-	modFiles: ["tree.js", "p.js", "m.js", "pt.js"],
+	modFiles: ["tree.js", "p.js", "m.js", "pt.js", "e.js", "n.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -12,11 +12,17 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "2.1",
-	name: "protons and upgrades",
+	num: "3",
+	name: "rows and layers",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+<h3>v3</h3><br>
+		- Added 24(?) upgrades<br>
+		- Added 1 milestone<br>
+		- Added 2 layers<br>
+
+
 <h3>v2.1</h3><br>
 		- Added upgrade names<br>
 
@@ -70,6 +76,24 @@ function getPointGen() {
 
 	if (hasUpgrade("pt", 11)) gain = gain.times(8);
 	if (hasUpgrade("pt", 13)) gain = gain.times(15);
+	if (hasUpgrade("pt", 14)) gain = gain.times(upgradeEffect("pt", 14));
+	if (hasUpgrade("pt", 21)) gain = gain.times(upgradeEffect("pt", 21));
+	if (hasUpgrade("pt", 22)) gain = gain.times(10000);
+	if (hasUpgrade("pt", 31)) gain = gain.times(1e15);
+	if (hasUpgrade("pt", 35)) gain = gain.times(1000);
+
+	if (hasUpgrade("e", 11)) gain = gain.times(1e6);
+
+		if (hasUpgrade("m", 53)) gain = gain.times(1e70);
+				if (hasUpgrade("pt", 44)) gain = gain.times(1.64e37);
+
+
+
+
+
+
+
+
 
 
 
@@ -78,6 +102,19 @@ function getPointGen() {
 
 	if (hasUpgrade("m", 22)) gain = gain.pow(1.1);
 	if (hasUpgrade("m", 32)) gain = gain.pow(1.08);
+
+	if (hasUpgrade("pt", 25)) gain = gain.pow(1.12);
+
+		if (hasUpgrade("e", 11)) gain = gain.pow(1.03);
+
+				if (hasUpgrade("m", 44)) gain = gain.pow(1.025);
+								if (hasUpgrade("m", 51)) gain = gain.pow(1.08);
+	if (hasUpgrade("pt", 43)) gain = gain.pow(1.03);
+
+		if (hasUpgrade("n", 11)) gain = gain.pow(1.01);
+
+
+
 
 
 
@@ -92,14 +129,14 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-		function() {if (true) return "reach 1e25 points to reach the endgame!"},
+		function() {if (true) return "endgame: 1e4900 points"},
 
 
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1e25"))
+	return player.points.gte(new Decimal("1e4900"))
 }
 
 

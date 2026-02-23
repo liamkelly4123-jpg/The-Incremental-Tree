@@ -16,6 +16,8 @@ addLayer("m", {
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.3, // Prestige currency exponent
+   softcap: new Decimal("1e1000"), 
+        softcapPower: new Decimal(0.25), 
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1);
         if (hasUpgrade("m", 12)) mult = mult.times(4);
@@ -23,6 +25,14 @@ addLayer("m", {
         if (hasUpgrade("m", 25)) mult = mult.times(5);
         if (hasUpgrade("m", 31) && hasUpgrade("p", 23)) mult = mult.times(upgradeEffect("p", 23));
         if (hasUpgrade("m", 34)) mult = mult.times(3);
+        if (hasUpgrade("pt", 23)) mult = mult.times(100000);
+        if (hasUpgrade("e", 12)) mult = mult.times(1e25);
+        if (hasUpgrade("e", 13)) mult = mult.times(1000);
+        if (hasUpgrade("m", 41)) mult = mult.times(upgradeEffect("m", 41));
+
+
+
+
 
 
 
@@ -32,7 +42,17 @@ addLayer("m", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
        exp = new Decimal(1);
-       if (hasUpgrade("m", 15)) exp = exp.times(1.3);
+              if (hasUpgrade("pt", 15)) exp = exp.add(0.2);
+
+if (hasUpgrade("m", 15)) exp = exp.times(1.3);
+if (hasUpgrade("pt", 32)) exp = exp.times(1.35);
+if (hasUpgrade("m", 52)) exp = exp.times(1.3);
+if (hasUpgrade("m", 53)) exp = exp.times(0.95);
+if (hasUpgrade("m", 54)) exp = exp.times(1.07);
+
+
+
+
         return exp;
     },
     row: 2, // Row the layer is in on the tree (0 is the first row)
@@ -156,6 +176,102 @@ addLayer("m", {
         description: "unlock protons and x4 points",
         cost: new Decimal(400e6),
         unlocked() { return (hasUpgrade(this.layer, 34))},
+
+        
+    },
+     41: {
+        title: "matter generated matter",
+        description: "matter boosts itself",
+        cost: new Decimal("1e340"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 35)},
+         effect() { // Calculate bonuses from the upgrade. Can return a single value or an object with multiple values
+                    let ret = player.m.points.add(1).pow(0.25);
+                    if (hasUpgrade("m", 43)) ret = ret.pow(1.25);
+                    if (ret.gte("1e500")) ret = ret.sqrt().times("1e250")
+                    return ret;
+                },
+                effectDisplay() { return format(this.effect())+"x" }, // Add formatting to the effect
+
+        
+    },
+    42: {
+        title: "more protons",
+        description: "x1e30 protons",
+        cost: new Decimal("1e1025"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 41)},
+        
+
+        
+    },
+      43: {
+        title: "more matter",
+        description: "raise 'matter generated matter' to 1.25",
+        cost: new Decimal("1e1029"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 42)},
+        
+
+        
+    },
+      44: {
+        title: "more points",
+        description: "^1.025 points",
+        cost: new Decimal("1e1074"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 43)},
+        
+
+        
+    },
+      45: {
+        title: "more prestige points",
+        description: "^1.1 prestige points",
+        cost: new Decimal("1e1083"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 44)},
+        
+
+        
+    },
+     51: {
+        title: "point increase",
+        description: "^1.08 points",
+        cost: new Decimal("1e1100"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 45)},
+        
+
+        
+    },
+     52: {
+        title: "super matter",
+        description: "^1.3 matter",
+        cost: new Decimal("1e1144"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 51)},
+        
+
+        
+    },
+     53: {
+        title: "antimatter?",
+        description: "^0.95 matter BUT x1e70 points",
+        cost: new Decimal("1e1327"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 52)},
+        
+
+        
+    },
+     54: {
+        title: "hyper matter",
+        description: "^1.07 matter",
+        cost: new Decimal("1e1367"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 53)},
+        
+
+        
+    },
+     55: {
+        title: "omega matter!",
+        description: "unlock a row of proton upgrades and ^1.08 protons",
+        cost: new Decimal("1e1435"),
+        unlocked() { return (hasUpgrade("e", 13)) && hasUpgrade("m", 54)},
+        
 
         
     },

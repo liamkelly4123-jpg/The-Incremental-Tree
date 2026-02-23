@@ -23,7 +23,11 @@ addLayer("p", {
      if (hasUpgrade("m", 21))  mult = mult.times(2.6);
      if (hasUpgrade("m", 34))  mult = mult.times(4);
 
-          if (hasUpgrade("pt", 12))  mult = mult.times(10);
+    if (hasUpgrade("pt", 12))  mult = mult.times(10);
+    if (hasUpgrade("pt", 24))  mult = mult.times(1e12);
+    if (hasUpgrade("pt", 41))  mult = mult.times(1e80);
+
+
 
 
 
@@ -38,6 +42,8 @@ addLayer("p", {
        if (hasUpgrade("m", 14)) exp = exp.add(0.1);
        if (hasUpgrade("m", 24)) exp = exp.times(1.1);
        if (hasUpgrade("m", 33)) exp = exp.times(1.1);
+              if (hasUpgrade("m", 45)) exp = exp.times(1.1);
+
 
 
         return exp;
@@ -47,6 +53,8 @@ addLayer("p", {
         {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
+    autoUpgrade() {return hasUpgrade("pt", 22)},
+    passiveGeneration() {return hasUpgrade("e", 12)},
     upgrades: {
     11: {
         title: "you gotta start somewhere",
@@ -62,6 +70,8 @@ addLayer("p", {
                 effect() { // Calculate bonuses from the upgrade. Can return a single value or an object with multiple values
                     let ret = player[this.layer].points.add(1).pow(0.45);
                     if (hasUpgrade("m", 12)) ret = ret.pow(1.2);
+                                        if (hasUpgrade("pt", 33)) ret = ret.pow(1.5);
+
                     if (ret.gte("1e20")) ret = ret.sqrt().times("1e10")
                     return ret;
                 },
