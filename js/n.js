@@ -9,7 +9,7 @@ addLayer("n", {
         best: new Decimal(0),
         total: new Decimal(0),
     }},
-    color: "#0206fa",
+    color: "#0845ec",
     requires: new Decimal("1e5445"), // Can be a function that takes requirement increases into account
     resource: "neutrons", // Name of prestige currency
     baseResource: "protons", // Name of resource prestige is based on
