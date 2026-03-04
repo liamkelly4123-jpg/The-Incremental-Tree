@@ -27,6 +27,9 @@ addLayer("p", {
     if (hasUpgrade("pt", 24))  mult = mult.times(1e12);
     if (hasUpgrade("pt", 41))  mult = mult.times(1e80);
 
+    if (hasUpgrade("n", 15))  mult = mult.times(1e140);
+    if (hasUpgrade("p", 31))  mult = mult.times("1e500");
+    if (hasUpgrade("p", 34))  mult = mult.times("1e1000");
 
 
 
@@ -40,21 +43,27 @@ addLayer("p", {
     gainExp() { // Calculate the exponent on main currency from bonuses
        exp = new Decimal(1);
        if (hasUpgrade("m", 14)) exp = exp.add(0.1);
+       if (hasUpgrade("pt", 53)) exp = exp.add(0.02);
+
        if (hasUpgrade("m", 24)) exp = exp.times(1.1);
        if (hasUpgrade("m", 33)) exp = exp.times(1.1);
               if (hasUpgrade("m", 45)) exp = exp.times(1.1);
+              if (hasUpgrade("q", 12)) exp = exp.times(upgradeEffect('q', 12));
 
-
+if (inChallenge('n', 12)) exp = exp.times(0.2)
+if (hasChallenge('n', 12)) exp = exp.times(1.05)
+if (hasChallenge('r', 11)) exp = exp.times(1.08)
 
         return exp;
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
-        {key: "p", description: "P: Reset for prestige points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "r", description: "R: Reset for research points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-    autoUpgrade() {return hasUpgrade("pt", 22)},
-    passiveGeneration() {return hasUpgrade("e", 12)},
+    autoUpgrade() {return hasUpgrade("pt", 22) || hasUpgrade('r', 11)},
+    passiveGeneration() {return hasUpgrade("r", 11) ? 1:0},
+    deactivated() {return (inChallenge('r', 11))},
     upgrades: {
     11: {
         title: "you gotta start somewhere",
@@ -73,6 +82,8 @@ addLayer("p", {
                                         if (hasUpgrade("pt", 33)) ret = ret.pow(1.5);
 
                     if (ret.gte("1e20")) ret = ret.sqrt().times("1e10")
+                    if (ret.gte("1e10000")) ret = ret.sqrt().times("1e5000")
+
                     return ret;
                 },
                 effectDisplay() { return format(this.effect())+"x" }, // Add formatting to the effect
@@ -148,6 +159,41 @@ addLayer("p", {
          
                
         
+    },
+     31: {
+        title: "been a while",
+        description: "x1e500 prestige points",
+        cost: new Decimal("1e11900"),
+                unlocked() {return(hasChallenge('n', 12))}
+
+    },
+     32: {
+        title: "mattery",
+        description: "^1.04 matter",
+        cost: new Decimal("1e17400"),
+                unlocked() {return(hasChallenge('n', 12))}
+
+    },
+    33: {
+        title: "protonic 3",
+        description: "^1.07 protons",
+        cost: new Decimal("1e18070"),
+                unlocked() {return(hasChallenge('n', 12))}
+
+    },
+    34: {
+        title: "that's alot!",
+        description: "x1e1000 prestige points",
+        cost: new Decimal("1e24770"),
+                unlocked() {return(hasChallenge('n', 12))}
+
+    },
+     35: {
+        title: "neutronic",
+        description: "x10,000 neutrons",
+        cost: new Decimal("1e27568"),
+                unlocked() {return(hasChallenge('n', 12))}
+
     },
     
 },

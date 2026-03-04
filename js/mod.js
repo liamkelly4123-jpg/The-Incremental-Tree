@@ -2,7 +2,7 @@ let modInfo = {
 	name: "The Incremental Tree",
 	author: "liam",
 	pointsName: "points",
-	modFiles: ["tree.js", "p.js", "m.js", "pt.js", "e.js", "n.js"],
+	modFiles: ["tree.js", "p.js", "m.js", "pt.js", "e.js", "n.js", 'r.js', 'q.js'],
 
 	discordName: "",
 	discordLink: "",
@@ -12,11 +12,16 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "3.0.1",
-	name: "rows and layers",
+	num: "4.0.0",
+	name: "science",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+<h3>v4.0.0</h3><br>
+		- Added about 30 upgrades<br>
+		- Added 10 challenges<br>
+		- Added 2 new layers<br>
+
 <h3>v3</h3><br>
 		- Added 24(?) upgrades<br>
 		- Added 1 milestone<br>
@@ -88,9 +93,16 @@ function getPointGen() {
 		if (hasUpgrade("m", 53)) gain = gain.times(1e70);
 				if (hasUpgrade("pt", 44)) gain = gain.times(1.64e37);
 
+	if (hasUpgrade("n", 12)) gain = gain.times(1e75);
+	if (hasUpgrade("n", 13)) gain = gain.times(1e40);
+	if (hasUpgrade("n", 14)) gain = gain.times(1e100);
+	if (hasUpgrade("pt", 52)) gain = gain.times("1e2500");
 
+	if (hasUpgrade("r", 11)) gain = gain.times("1e100");
+	if (hasUpgrade("r", 13)) gain = gain.times("1e100");
+    if (hasUpgrade("r", 22)) gain = gain.times("1e50");
 
-
+    if (hasUpgrade("e", 14)) gain = gain.times("1e75000");
 
 
 
@@ -113,13 +125,23 @@ function getPointGen() {
 	if (hasUpgrade("pt", 43)) gain = gain.pow(1.03);
 
 		if (hasUpgrade("n", 11)) gain = gain.pow(1.01);
+if (hasChallenge('n', 11)) gain = gain.pow(1.04)
+if (hasChallenge('n', 31)) gain = gain.pow(1.05)
+		if (hasUpgrade("r", 14)) gain = gain.pow(1.04);
+		if (hasUpgrade("n", 23)) gain = gain.pow(1.03);
+if (hasChallenge('r', 22)) gain = gain.pow(1.03)
+if (hasChallenge('n', 32)) gain = gain.pow(1.03)
+
+
+		if (hasUpgrade("q", 11)) gain = gain.pow(upgradeEffect('q', 11));
 
 
 
 
+if (inChallenge('n', 11)) gain = gain.pow(0.12)
+if (inChallenge('n', 32)) gain = gain.pow(0.5)
 
-
-
+if (inChallenge('r', 22)) gain = gain.sub(gain).add(0.5)
 
 	return gain
 }
@@ -130,14 +152,14 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-		function() {if (true) return "endgame: 1e4900 points"},
+		function() {if (true) return "endgame: e6,657,830 points"},
 
 
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1e4900"))
+	return player.points.gte(new Decimal("e6,657,830"))
 }
 
 

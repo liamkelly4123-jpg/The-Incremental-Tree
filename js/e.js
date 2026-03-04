@@ -62,7 +62,14 @@ addLayer("e", {
 
         
     },
-   
+    14: {
+        title: "been a very long time",
+        description: "x1e75,000 points",
+        cost: new Decimal("1e46000"),
+        unlocked() { return (hasUpgrade("q", 15))},
+
+        
+    },
     
     
     },

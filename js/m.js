@@ -29,6 +29,9 @@ addLayer("m", {
         if (hasUpgrade("e", 12)) mult = mult.times(1e25);
         if (hasUpgrade("e", 13)) mult = mult.times(1000);
         if (hasUpgrade("m", 41)) mult = mult.times(upgradeEffect("m", 41));
+        if (hasUpgrade("n", 14)) mult = mult.times(1e100);
+        if (hasUpgrade("n", 21)) mult = mult.times(1e300);
+        if (hasUpgrade("r", 11)) mult = mult.times(1e20);
 
 
 
@@ -42,14 +45,21 @@ addLayer("m", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
        exp = new Decimal(1);
-              if (hasUpgrade("pt", 15)) exp = exp.add(0.2);
+       if (hasUpgrade("pt", 15)) exp = exp.add(0.2);
+       if (hasUpgrade("pt", 53)) exp = exp.add(0.02);
 
 if (hasUpgrade("m", 15)) exp = exp.times(1.3);
 if (hasUpgrade("pt", 32)) exp = exp.times(1.35);
 if (hasUpgrade("m", 52)) exp = exp.times(1.3);
 if (hasUpgrade("m", 53)) exp = exp.times(0.95);
 if (hasUpgrade("m", 54)) exp = exp.times(1.07);
+if (hasUpgrade("p", 32)) exp = exp.times(1.04);
+if (hasUpgrade("pt", 51)) exp = exp.times(1.07);
+if (hasUpgrade("q", 13)) exp = exp.times(upgradeEffect('q', 13));
 
+if (inChallenge("n", 21)) exp = exp.times(0.15);
+if (hasChallenge("n", 21)) exp = exp.times(1.03);
+if (hasChallenge("r", 12)) exp = exp.times(1.04);
 
 
 
@@ -60,6 +70,10 @@ if (hasUpgrade("m", 54)) exp = exp.times(1.07);
         {key: "m", description: "M: Reset for matter", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return hasUpgrade("p", 25) || player.m.unlocked},
+          passiveGeneration() {return hasUpgrade("n", 12) || hasUpgrade('r', 13) ? 1:0},
+    autoUpgrade() {return hasChallenge("n", 21) || hasUpgrade('r', 12)},
+    deactivated() {return (inChallenge('r', 12))},
+
     upgrades: {
     11: {
         title: "this should help get back here",

@@ -21,6 +21,9 @@ addLayer("pt", {
     
 if (hasUpgrade("m", 42)) mult = mult.times(1e30);
 if (hasUpgrade("pt", 43)) mult = mult.times(2);
+if (hasUpgrade("n", 22)) mult = mult.times("1e450");
+if (hasUpgrade("r", 12)) mult = mult.times("1e400");
+if (hasUpgrade("r", 21)) mult = mult.times("777777");
 
 
 
@@ -35,9 +38,16 @@ if (hasUpgrade("pt", 43)) mult = mult.times(2);
       if (hasUpgrade("m", 55)) exp = exp.times(1.08);
             if (hasUpgrade("pt", 42)) exp = exp.times(1.4);
                         if (hasUpgrade("pt", 45)) exp = exp.times(1.2);
+                        if (hasUpgrade("p", 33)) exp = exp.times(1.07);
+
+                        if (hasUpgrade("pt", 54)) exp = exp.pow(1.08);
+if (hasUpgrade('n', 24)) exp = exp.times(1.06)
+              if (hasUpgrade("q", 14)) exp = exp.times(upgradeEffect('q', 14));
 
 
-
+if (inChallenge('n', 22)) exp = exp.times(0.25)
+if (hasChallenge('n', 22)) exp = exp.times(1.06)
+if (hasChallenge('r', 21)) exp = exp.times(1.025)
 
         return exp;
     },
@@ -46,6 +56,10 @@ if (hasUpgrade("pt", 43)) mult = mult.times(2);
         {key: "P", description: "SHIFT + P: Reset for protons", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return hasUpgrade("m", 35) || player.pt.unlocked},
+       passiveGeneration() {return hasUpgrade("n", 12) || hasUpgrade('r', 11) ? 1:0},
+    autoUpgrade() {return hasUpgrade('r', 12)},
+    deactivated() {return (inChallenge('r', 21))},
+
     milestones: {
     1: {
         requirementDescription: "1e5445 protons",
@@ -255,6 +269,41 @@ if (hasUpgrade("pt", 43)) mult = mult.times(2);
 
         
     },   
+    51: {
+        title: "matteric",
+        description: "^1.07 matter",
+        cost: new Decimal("1e41555"),
+                unlocked() {return(hasChallenge('n', 21))}
+
+    },
+    52: {
+        title: "mega boost",
+        description: "x1e2500 points",
+        cost: new Decimal("1e42414"),
+                unlocked() {return(hasChallenge('n', 21))}
+
+    },
+    53: {
+        title: "exp addition",
+        description: "+^0.02 prestige points and matter",
+        cost: new Decimal("1e59475"),
+                unlocked() {return(hasChallenge('n', 21))}
+
+    },
+     54: {
+        title: "exp exp?",
+        description: "^1.08 proton exp",
+        cost: new Decimal("1e60785"),
+                unlocked() {return(hasChallenge('n', 21))}
+
+    },
+     55: {
+        title: "neutronic 2",
+        description: "x10,000,000 neutrons",
+        cost: new Decimal("1e72226"),
+                unlocked() {return(hasChallenge('n', 21))}
+
+    },
     
 },
 
